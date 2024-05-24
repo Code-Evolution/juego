@@ -1,3 +1,0 @@
-# juego
-
-hola
