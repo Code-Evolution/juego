@@ -1,0 +1,14 @@
+{
+	"partidas": [
+		{
+			"nombre": "Partida 1",
+			"fecha": "2024-05-20",
+			"nivel": "1"
+		},
+		{
+			"nombre": "Partida 2",
+			"fecha": "2024-05-24",
+			"nivel": "2"
+		}
+	]
+}
