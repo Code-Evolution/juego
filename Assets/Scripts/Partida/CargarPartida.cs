@@ -23,12 +23,11 @@ public class CargarPartida : MonoBehaviour
 	  {
 		// load the game scene
 		SceneManager.LoadScene("Nivel" + session.nivel);
+		Time.timeScale = 1;
 	  });
-
 	  instance.transform.Find("PanelPartida").transform.Find("tituloPartida").GetComponent<TMPro.TextMeshProUGUI>().text = session.nombre;
 	  instance.transform.Find("PanelPartida").transform.Find("fechaPartida").GetComponent<TMPro.TextMeshProUGUI>().text = session.fecha;
 	  instance.transform.Find("PanelPartida").transform.Find("nivelPartida").GetComponent<TMPro.TextMeshProUGUI>().text += session.nivel;
-
 
 	  // add to parent
 	  instance.transform.SetParent(partidasLayout.transform, false);
