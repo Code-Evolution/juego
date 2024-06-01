@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeaderboardManager : MonoBehaviour
+public class ManejadorRanking : MonoBehaviour
 {
     public List<PlayerScore> leaderboard = new List<PlayerScore>
     {

@@ -7,12 +7,12 @@ public class Leaderboard : MonoBehaviour
     public ManejadorRanking manejadorRanking;
     public Text leaderboardText;
 
-    private void Start()
-    {
-        UpdateLeaderboard();
+
+    public void mostrar(){
+        Debug.Log("hola");
     }
 
-    public void UpdateLeaderboardUI()
+    private void UpdateLeaderboard()
     {
         List<PlayerScore> leaderboard = manejadorRanking.GetLeaderboard();
         leaderboardText.text = "";
