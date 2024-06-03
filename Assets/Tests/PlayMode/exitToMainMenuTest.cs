@@ -24,8 +24,5 @@ public class ExitToMainMenuTests
 
         // Assert
         Assert.AreEqual("Menu", SceneManager.GetActiveScene().name);
-
-        // Limpia después de la prueba
-        SceneManager.UnloadSceneAsync("Menu");
     }
 }

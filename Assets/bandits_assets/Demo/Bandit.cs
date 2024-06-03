@@ -9,12 +9,18 @@ public class Bandit : MonoBehaviour {
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
     private Sensor_Bandit       m_groundSensor;
+
+    public Vector3 initialPosition;  // Nueva variable para la posición inicial
+
+    public float fallThreshold = -10f;  // Nueva variable para el umbral de caída
+
     private bool                m_grounded = false;
     private bool                m_combatIdle = false;
     private bool                m_isDead = false;
 
     // Use this for initialization
     void Start () {
+        initialPosition = transform.position;  // Guarda la posición inicial del personaje
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_Bandit>();
@@ -39,9 +45,9 @@ public class Bandit : MonoBehaviour {
 
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
-            transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
         else if (inputX < 0)
-            transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
         // Move
         m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
@@ -50,31 +56,13 @@ public class Bandit : MonoBehaviour {
         m_animator.SetFloat("AirSpeed", m_body2d.velocity.y);
 
         // -- Handle Animations --
-        //Death
-        if (Input.GetKeyDown("e")) {
-            if(!m_isDead)
-                m_animator.SetTrigger("Death");
-            else
-                m_animator.SetTrigger("Recover");
 
-            m_isDead = !m_isDead;
-        }
             
-        //Hurt
-        else if (Input.GetKeyDown("q"))
-            m_animator.SetTrigger("Hurt");
 
-        //Attack
-        else if(Input.GetMouseButtonDown(0)) {
-            m_animator.SetTrigger("Attack");
-        }
 
-        //Change between idle and combat idle
-        else if (Input.GetKeyDown("f"))
-            m_combatIdle = !m_combatIdle;
 
         //Jump
-        else if (Input.GetKeyDown("space") && m_grounded) {
+        if (Input.GetKeyDown("space") && m_grounded) {
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
@@ -90,8 +78,27 @@ public class Bandit : MonoBehaviour {
         else if (m_combatIdle)
             m_animator.SetInteger("AnimState", 1);
 
+        else if (transform.position.y < fallThreshold)
+        {
+            // Imprimir mensaje de caída para depuración
+            Debug.Log("Player fell below threshold, resetting position.");
+            ResetPosition();
+        }
+
         //Idle
         else
             m_animator.SetInteger("AnimState", 0);
     }
+
+    
+        
+    
+
+    private void ResetPosition()
+    {
+        transform.position = initialPosition;
+        m_body2d.velocity = Vector2.zero;  // Resetea la velocidad del personaje
+    }
+
+
 }
