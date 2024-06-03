@@ -10,17 +10,17 @@ public class NewMonoBehaviour : MonoBehaviour
     public Button loginButton;
     public Text resultText;
 
-    private string loginUrl = "https://codev.com/login";
+    public string loginUrl = "https://codev.com/login";
 
     // Use this for initialization
-    void Start()
+    public void Start()
     {
         loginButton.onClick.AddListener(OnLoginButtonClicked);
 
 
     }
 
-    void OnLoginButtonClicked()
+    public void OnLoginButtonClicked()
     {
         string username = usernameField.text;
         string password = passwordField.text;
