@@ -107,18 +107,7 @@ public class MenuHandlerTests
         Assert.IsFalse(leaderboard.activeSelf);
     }
 
-    [Test]
-    public void ExitGame_ShouldQuitApplication()
-    {
-        // Act
-        menuHandler.ExitGame();
 
-        // Assert
-        // Unfortunately, Application.Quit() cannot be tested in the editor.
-        // You might need to mock this method if you want to test it.
-        // For now, we'll just assume it works as expected.
-        Assert.Pass("ExitGame method called. Application.Quit() cannot be tested in the editor.");
-    }
 
     [TearDown]
     public void TearDown()
