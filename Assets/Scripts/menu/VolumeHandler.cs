@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class VolumeHandler : MonoBehaviour {
   [SerializeField]
-  Slider audioSlider;
+  public Slider audioSlider;
   // Start is called before the first frame update
   void Start() {
     if (!PlayerPrefs.HasKey("Volume")) {
@@ -19,7 +19,7 @@ public class VolumeHandler : MonoBehaviour {
     Save();
   }
 
-  private void Load() { audioSlider.value = PlayerPrefs.GetFloat("Volume"); }
+  public void Load() { audioSlider.value = PlayerPrefs.GetFloat("Volume"); }
 
-  private void Save() { PlayerPrefs.SetFloat("Volume", audioSlider.value); }
+  public void Save() { PlayerPrefs.SetFloat("Volume", audioSlider.value); }
 }
