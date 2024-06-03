@@ -21,7 +21,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
+        // Solo utilizar el valor de horizontal desde Input si no estamos ejecutando pruebas
+        if (!isTesting)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+        }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
 
@@ -38,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
-    private void Jump()
+    public void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         
@@ -60,5 +64,15 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = initialPosition;
         rb.velocity = Vector2.zero;  // Resetea la velocidad del personaje
+    }
+
+    // Nueva variable para controlar si estamos en modo de prueba
+    private bool isTesting = false;
+
+    // Nuevo método para establecer la entrada horizontal desde las pruebas
+    public void SetHorizontalInput(float value)
+    {
+        isTesting = true;
+        horizontal = value;
     }
 }
