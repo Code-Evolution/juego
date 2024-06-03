@@ -54,7 +54,7 @@ public class PlayerMovementTests
         yield return null;
 
         // Verificar que la velocidad vertical ha aumentado
-        Assert.AreEqual(10f, Mathf.RoundToInt(rb.velocity.y));
+        Assert.AreEqual(13f, Mathf.RoundToInt(rb.velocity.y));
     }
 
     [UnityTest]

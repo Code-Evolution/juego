@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float jumpForce = 10f;
+    public float jumpForce = 20f;
     public float speed = 5f;
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce*1.3f);
         
         // Imprimir mensaje de salto para depuración
         Debug.Log("Jumping with force: " + jumpForce);
