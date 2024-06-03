@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
-    [SerializeField] private GameObject botonPausa;
-    [SerializeField] private GameObject menuPausa;
-    private bool juegoPausado = false;
+    [SerializeField] public GameObject botonPausa;
+    [SerializeField] public GameObject menuPausa;
+    public bool juegoPausado = false;
 
-    private void Update(){
+    public void Update(){
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(juegoPausado){
                 Reanudar();
